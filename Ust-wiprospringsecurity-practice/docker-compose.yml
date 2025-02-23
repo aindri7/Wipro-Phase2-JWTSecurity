@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  app:
+    image: sharath198/springbootapplication
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "2008:2008"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/prac
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: aindriGhoshal@107
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: prac
+      MYSQL_ROOT_PASSWORD: aindriGhoshal@107
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
